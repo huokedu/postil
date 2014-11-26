@@ -1,0 +1,38 @@
+{
+  "name": "mark",
+  "version": "1.0.0",
+  "description": "next generation remark",
+  "main": "index.js",
+  "keywords": [
+    "postil"
+  ],
+  "dependencies": {
+    "co": "^4.0.0",
+    "co-body": "^1.0.0",
+    "co-busboy": "^1.2.0",
+    "co-fs": "^1.2.0",
+    "koa": "^0.13.0",
+    "koa-compose": "^2.3.0",
+    "koa-logger": "^1.2.2",
+    "koa-router": "^3.7.0",
+    "koa-session": "^2.0.0",
+    "koa-static": "^1.4.7",
+    "koa-mount": "^1.3.0",
+    "streaming-json-stringify": "^1.0.0"
+  },
+  "devDependencies": {
+    "co": "*",
+    "mocha": "*",
+    "should": "^3.3.2",
+    "supertest": "*"
+  },
+  "scripts": {
+    "test": "make test",
+    "start": "node --harmony app.js"
+  },
+  "engines": {
+    "node": ">= 11.3"
+  },
+  "author": "luochuangjie",
+  "license": "ISC"
+}
