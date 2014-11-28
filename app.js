@@ -2,15 +2,22 @@
 var koa = require('koa');
 var static = require('koa-static');
 var mount = require('koa-mount');
+var session = require('koa-session');
+var bodyparser = require('koa-bodyparser');
+var logger = require('koa-logger');
 var index = require('./routes/index');
 var toWritePostil = require('./routes/to-write-postil');
 var tpls = require('./routes/tpls');
 var app = koa();
 
+
 app.name = 'postil';
 app.env = 'development';
 
 app.use(static('./web/static'));
+app.use(logger());
+app.use(bodyparser());
+app.use(session());
 
 
 
