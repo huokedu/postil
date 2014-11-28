@@ -1,10 +1,15 @@
+var app = require('./app.js');
+var should = require('should');
+var co = require('co');
+var request = require('supertest').agent(app.listen());
 
-function *good() {
-    console.log('test0');
-    yield 1;
-    console.log('test1');
-}
-console.log('test');
-var go = good();
-go.next();
-go.next();
+describe('200', function(){
+    describe('when GET /', function(){
+        it('should return the index page', function(done){
+            request
+                .get('/')
+                .expect()
+                .expect(/Page Not Found/, done);
+        });
+    });
+});

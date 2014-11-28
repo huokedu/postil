@@ -4,30 +4,22 @@ var static = require('koa-static');
 var mount = require('koa-mount');
 var index = require('./routes/index');
 var toWritePostil = require('./routes/to-write-postil');
+var tpls = require('./routes/tpls');
 var app = koa();
 
 app.name = 'postil';
 app.env = 'development';
 
+app.use(static('./web/static'));
 
-function ignoreAssets(mw) {
-    return function *(next){
-        if (/(\.js|\.css|\.ico|\.jpg)$/.test(this.path)) {
-            yield next;
-        } else {
-            // must .call() to explicitly set the receiver
-            // so that "this" remains the koa Context
-            yield mw.call(this, next);
-        }
-    }
-}
-//secret resonse
-//app.use(auth({name: 'Zero', pass: '123'}));
 
-app.use(static('./web'));
-app.use(index);
+
+//get or post request should be above
 app.use(mount(toWritePostil.middleware()));
+app.use(mount(tpls.middleware()));
+//get or post request should be below
 
+app.use(index);
 
 //error handle
 app.on('error', function (err, ctx, ctx) {
@@ -35,3 +27,5 @@ app.on('error', function (err, ctx, ctx) {
 });
 
 app.listen(3000);
+
+module.exports = app;
